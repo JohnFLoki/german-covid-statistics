@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script was created by JohnFCreep and was taken from GitHub 
 wget https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.json -O /var/www/html/public/corona-data.txt
 text=$(cat /var/www/html/public/corona-data.txt)
 
