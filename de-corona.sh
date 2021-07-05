@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script was created by JohnFCreep and was taken from GitHub
 wget https://impfdashboard.de/static/data/germany_vaccinations_by_state.tsv -O /var/www/html/public/de-corona.txt
 wget https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv -O /var/www/html/public/de-corona2.txt
 text=$(cat /var/www/html/public/de-corona.txt)
