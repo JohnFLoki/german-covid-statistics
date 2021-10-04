@@ -1,8 +1,9 @@
 #!/bin/bash
 # This script was created by JohnFCreep and was taken from GitHub
 wget https://impfdashboard.de/static/data/germany_vaccinations_by_state.tsv -O /var/www/html/public/de-corona.txt
-wget https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv -O /var/www/html/public/de-corona2.txt
 text=$(cat /var/www/html/public/de-corona.txt)
+
+wget https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv -O /var/www/html/public/de-corona2.txt
 text2=$(cat /var/www/html/public/de-corona2.txt)
 
 debw1=$(echo $text | grep --only-matching --perl-regexp "(?<=DE-BW )[0-9]*")
@@ -27,10 +28,35 @@ tmp=10
 if [ $tw -lt 10 ]
 then
 tw2=0$tw
+else
+tw2=$tw
 fi
 now=`date +%Y-%m-$tw2`
+
 gesamt2=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now )[0-9]*")
-neue=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 )[0-9]*")
+gesamt3=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 )[0-9]*")
+gesamt4=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 )[0-9]*")
+gesamt5=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 )[0-9]*")
+gesamt6=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 )[0-9]*")
+gesamt7=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 )[0-9]*")
+gesamt8=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 )[0-9]*")
+gesamt9=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 )[0-9]*")
+gesamt10=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 )[0-9]*")
+gesamt11=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 )[0-9]*")
+gesamt12=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 )[0-9]*")
+gesamt13=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 $gesamt12 )[0-9]*")
+gesamt14=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 $gesamt12 $gesamt13 )[0-9]*")
+gesamt15=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 $gesamt12 $gesamt13 $gesamt14 )[0-9]*")
+gesamt16=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 $gesamt12 $gesamt13 $gesamt14 $gesamt15 )[0-9]*")
+gesamt17=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 $gesamt12 $gesamt13 $gesamt14 $gesamt15 $gesamt16 )[0-9]*")
+gesamt18=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 $gesamt12 $gesamt13 $gesamt14 $gesamt15 $gesamt16 $gesamt17 )[0-9]*")
+neue=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 $gesamt12 $gesamt13 $gesamt14 $gesamt15 $gesamt16 $gesamt17 $gesamt18 )[0-9]*")
+
+#echo $tw
+#echo $now
+#echo $gesamt2
+#echo $neue
+
 debw2=$(echo $text | grep --only-matching --perl-regexp "(?<=DE-BW $debw1 )[0-9]*")
 deby2=$(echo $text | grep --only-matching --perl-regexp "(?<=DE-BY $deby1 )[0-9]*")
 debe2=$(echo $text | grep --only-matching --perl-regexp "(?<=DE-BE $debe1 )[0-9]*")
@@ -73,4 +99,4 @@ einw=83729336
 percvoll=$(echo "scale=1 ; (100*$voll/$einw)" | bc)
 percerst=$(echo "scale=1 ; (100*$erst/$einw)" | bc)
 
-echo Gesamte Dosen\:\<br\>$gesamt\<br\>\<br\>mindestens eine Impfung\:\<br\>$erst \($percerst%\)\<br\>\<br\>Vollst\&auml\;ndig geimpft\:\<br\>$voll  \($percvoll%\)\<br\>\<br\>Neue Impfungen\:\<br\>$neue> /var/www/html/public/apide-corona.txt
+echo Gesamte Dosen\:\<br\>$gesamt2\<br\>\<br\>mindestens eine Impfung\:\<br\>$erst \($percerst%\)\<br\>\<br\>Vollst\&auml\;ndig geimpft\:\<br\>$voll  \($percvoll%\)\<br\>\<br\>T\&auml\;glich verabreichte Impfdosen\:\<br\>$neue > /var/www/html/public/apide-corona.txt
