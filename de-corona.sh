@@ -3,7 +3,8 @@
 wget https://impfdashboard.de/static/data/germany_vaccinations_by_state.tsv -O /var/www/html/public/de-corona.txt
 text=$(cat /var/www/html/public/de-corona.txt)
 
-wget https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv -O /var/www/html/public/de-corona2.txt
+wget https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v2.tsv -O /var/www/html/public/germany_vaccinations_timeseries_v2.tsv
+mv /var/www/html/public/germany_vaccinations_timeseries_v2.tsv /var/www/html/public/de-corona2.txt
 text2=$(cat /var/www/html/public/de-corona2.txt)
 
 debw1=$(echo $text | grep --only-matching --perl-regexp "(?<=DE-BW )[0-9]*")
@@ -23,15 +24,17 @@ dest1=$(echo $text | grep --only-matching --perl-regexp "(?<=DE-ST )[0-9]*")
 desh1=$(echo $text | grep --only-matching --perl-regexp "(?<=DE-SH )[0-9]*")
 deth1=$(echo $text | grep --only-matching --perl-regexp "(?<=DE-TH )[0-9]*")
 gesamt=$(($debw1 + $deby1 + $debe1 + $debb1 + $dehb1 + $dehh1 + $dehe1 + $demv1 + $deni1 + $denw1 + $derp1 + $desl1 + $desn1 + $dest1 + $desh1 + $deth1))
-tw=$((`date +%d` -1))
-tmp=10
-if [ $tw -lt 10 ]
+day=`date +%d`
+day1=$(expr $day - 1)
+
+if [ $day1 -lt 10 ]
 then
-tw2=0$tw
+day2=0$day1
 else
-tw2=$tw
+day2=$day1
 fi
-now=`date +%Y-%m-$tw2`
+
+now=`date +%Y-%m-$day2`
 
 gesamt2=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now )[0-9]*")
 gesamt3=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 )[0-9]*")
@@ -52,7 +55,7 @@ gesamt17=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $
 gesamt18=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 $gesamt12 $gesamt13 $gesamt14 $gesamt15 $gesamt16 $gesamt17 )[0-9]*")
 neue=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 $gesamt12 $gesamt13 $gesamt14 $gesamt15 $gesamt16 $gesamt17 $gesamt18 )[0-9]*")
 
-#echo $tw
+#echo $day
 #echo $now
 #echo $gesamt2
 #echo $neue
