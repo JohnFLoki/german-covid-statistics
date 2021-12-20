@@ -47,7 +47,6 @@ gesamt27=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $
 personenerst=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 $gesamt12 $gesamt13 $gesamt14 $gesamt15 $gesamt16 $gesamt17 $gesamt18 $erst $voll $drei $neue $gesamt23 $gesamt24 $gesamt25 $gesamt26 $gesamt27 )[0-9]*") #same as erst
 personenvoll=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 $gesamt12 $gesamt13 $gesamt14 $gesamt15 $gesamt16 $gesamt17 $gesamt18 $erst $voll $drei $neue $gesamt23 $gesamt24 $gesamt25 $gesamt26 $gesamt27 $personenerst )[0-9]*") #not same as voll
 personendrei=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 $gesamt12 $gesamt13 $gesamt14 $gesamt15 $gesamt16 $gesamt17 $gesamt18 $erst $voll $drei $neue $gesamt23 $gesamt24 $gesamt25 $gesamt26 $gesamt27 $personenerst $personenvoll )[0-9]*") #same as drei
-personendrei=$(echo $text2 | grep --only-matching --perl-regexp "(?<=$now $gesamt2 $gesamt3 $gesamt4 $gesamt5 $gesamt6 $gesamt7 $gesamt8 $gesamt9 $gesamt10 $gesamt11 $gesamt12 $gesamt13 $gesamt14 $gesamt15 $gesamt16 $gesamt17 $gesamt18 $erst $voll $drei $neue $gesamt23 $gesamt24 $gesamt25 $gesamt26 $gesamt27 $personenerst $personenvoll $personendrei )[0-9]*")
 
 einw=83729336
 percerst=$(echo "scale=1 ; (100*$erst/$einw)" | bc)
