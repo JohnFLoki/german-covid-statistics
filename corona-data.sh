@@ -20,4 +20,4 @@ then
 denewd=0
 fi
 
-echo Gesamt Infektionen:\<br\>$detotalc\<br\>\<br\>Neue Infektionen:\<br\>$denewc\<br\>\<br\>Gesamte Todesfälle:\<br\>$detotald\<br\>\<br\>Neue Todesfälle:\<br\>$denewd\<br\>\<br\>Inzidenzwert:\<br\>$deiwert2\<br\>\<br\>Gesamt Tests:\<br\>$detotalt\<br\>\<br\>Tests pro Fall:\<br\>$detpc > /var/www/html/public/apicorona-data.txt
+echo Gesamt Infektionen:\<br\>$detotalc\<br\>\<br\>Neue Infektionen:\<br\>$denewc\<br\>\<br\>Gesamte Todesf\&auml\;lle:\<br\>$detotald\<br\>\<br\>Neue Todesf\&auml\;lle:\<br\>$denewd\<br\>\<br\>Inzidenzwert:\<br\>$deiwert2\<br\>\<br\>Gesamt Tests:\<br\>$detotalt\<br\>\<br\>Tests pro Fall:\<br\>$detpc > /var/www/html/public/apicorona-data.txt
