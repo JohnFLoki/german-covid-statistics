@@ -1,7 +1,7 @@
 #!/bin/bash
 # This script was created by JohnFCreep and was taken from GitHub
 
-#wget https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v3.tsv -O /var/www/html/public/de-corona2.txt
+wget https://impfdashboard.de/static/data/germany_vaccinations_timeseries_v3.tsv -O /var/www/html/public/de-corona2.txt
 
 names=$(cat /var/www/html/public/de-corona2.txt | head -1)
 values=$(cat /var/www/html/public/de-corona2.txt | tail -1)
