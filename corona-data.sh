@@ -10,8 +10,8 @@ denewc=$(echo $de | grep --only-matching --perl-regexp "(?<=new_cases\":)[0-9]+"
 detotald=$(echo $de | grep --only-matching --perl-regexp "(?<=total_deaths\":)[0-9]+")
 denewd=$(echo $de | grep --only-matching --perl-regexp "(?<=new_deaths\":)[0-9]+")
 deiwert=$(echo $de | grep --only-matching --perl-regexp "(?<=new_cases_smoothed\":)[0-9]*")
-detotalt=$(echo $de | grep --only-matching --perl-regexp "(?<=total_tests\":)[0-9]+")
-detpc=$(echo $de | grep --only-matching --perl-regexp "(?<=tests_per_case\":)[0-9]*\.[0-9]")
+#detotalt=$(echo $de | grep --only-matching --perl-regexp "(?<=total_tests\":)[0-9]+")
+#detpc=$(echo $de | grep --only-matching --perl-regexp "(?<=tests_per_case\":)[0-9]*\.[0-9]")
 
 deiwert2=$(echo "scale=8 ; (($deiwert*7/83729336*100000))" | bc | sed 's/0\{1,\}$//')
 
@@ -20,4 +20,4 @@ then
 denewd=0
 fi
 
-echo Gesamt Infektionen:\<br\>$detotalc\<br\>\<br\>Neue Infektionen:\<br\>$denewc\<br\>\<br\>Gesamte Todesf\&auml\;lle:\<br\>$detotald\<br\>\<br\>Neue Todesf\&auml\;lle:\<br\>$denewd\<br\>\<br\>Inzidenzwert:\<br\>$deiwert2\<br\>\<br\>Gesamt Tests:\<br\>$detotalt\<br\>\<br\>Tests pro Fall:\<br\>$detpc > /var/www/html/public/apicorona-data.txt
+echo Gesamt Infektionen:\<br\>$detotalc\<br\>\<br\>Neue Infektionen:\<br\>$denewc\<br\>\<br\>Gesamte Todesf\&auml\;lle:\<br\>$detotald\<br\>\<br\>Neue Todesf\&auml\;lle:\<br\>$denewd\<br\>\<br\>Inzidenzwert:\<br\>$deiwert2 > /var/www/html/public/apicorona-data.txt
